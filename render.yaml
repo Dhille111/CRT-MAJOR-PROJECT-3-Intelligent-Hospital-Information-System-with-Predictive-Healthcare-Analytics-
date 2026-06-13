@@ -7,8 +7,8 @@ services:
     name: healthcare-hms-backend
     env: python
     rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: if [ -d backend ]; then cd backend && pip install -r requirements.txt; else pip install -r requirements.txt; fi
+    startCommand: if [ -d backend ]; then cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT; else uvicorn app.main:app --host 0.0.0.0 --port $PORT; fi
     envVars:
       - key: DATABASE_URL
         value: sqlite:///./hospital.db # Ephemeral SQLite for demo. Override with PostgreSQL URL for persistent production.
@@ -25,7 +25,7 @@ services:
   - type: static
     name: healthcare-hms-frontend
     rootDir: frontend
-    buildCommand: npm install && VITE_API_URL=${BACKEND_URL}/api/v1 npm run build
+    buildCommand: if [ -d frontend ]; then cd frontend && npm install && VITE_API_URL=${BACKEND_URL}/api/v1 npm run build; else npm install && VITE_API_URL=${BACKEND_URL}/api/v1 npm run build; fi
     publishPath: dist
     routes:
       - type: rewrite
