@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: 240 251 249;
+  --bg-alt: 234 245 242;
+  --surface: 255 255 255;
+  --surface-strong: 250 253 252;
+  --surface-weak: 244 249 248;
+  --border: 209 233 229;
+  --text: 21 32 30;
+  --text-soft: 76 91 87;
+  --brand: 38 150 131;
+  --brand-soft: 219 244 239;
+  --success: 22 163 123;
+  --warning: 203 138 37;
+  --danger: 220 38 70;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(102, 118, 113, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 118, 113, 0.35);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased;
+  color: rgb(var(--text));
+  background:
+    radial-gradient(circle at top left, rgba(38, 150, 131, 0.12), transparent 26%),
+    radial-gradient(circle at top right, rgba(67, 130, 220, 0.08), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.72), transparent 30%),
+    linear-gradient(180deg, #f0fbf9 0%, #f7fcfb 42%, #eaf5f2 100%);
+}
+
+::selection {
+  background: rgba(38, 150, 131, 0.16);
+  color: rgb(21, 32, 30);
+}
+
+.glass-card {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+  }
+}
+
+.app-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.theme-surface {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(244, 252, 250, 0.82));
+  border: 1px solid rgba(175, 219, 210, 0.72);
+  box-shadow: 0 18px 48px rgba(22, 42, 40, 0.08);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
