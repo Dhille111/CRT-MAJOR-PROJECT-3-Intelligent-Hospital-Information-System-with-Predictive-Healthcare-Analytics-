@@ -20,11 +20,15 @@ def create_app() -> FastAPI:
     
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"] if allow_all else origins,
-        allow_credentials=not allow_all,
+        allow_origins=[
+        "http://localhost:5173",
+        "https://crt-major-project-3-intelligent-hospital-kl81.onrender.com"
+    ],
+        allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
 
     register_exception_handlers(app)
     app.include_router(api_router, prefix="/api/v1")
